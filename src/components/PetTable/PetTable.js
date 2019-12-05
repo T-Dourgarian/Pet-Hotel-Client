@@ -8,7 +8,7 @@ export class PetTable extends Component {
             <div>
                 <h3>History</h3>
                 <table>
-                    <th>
+                    <thead>
                         <tr>
                             <th>Owner</th>
                             <th>Pet</th>
@@ -17,8 +17,8 @@ export class PetTable extends Component {
                             <th>Checked In</th>
                             <th>Actions</th>
                         </tr>
-                    </th>
-                    <tb>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>Chris</td>
                             <td>Charlie</td>
@@ -38,7 +38,7 @@ export class PetTable extends Component {
                             </tr>
                         )
   )} */}
-                    </tb>
+                    </tbody>
                 </table>
             </div>
         )

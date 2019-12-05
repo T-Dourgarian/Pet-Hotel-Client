@@ -62,10 +62,10 @@ function* addOwnerSaga(action) {
 
 function* addPetSaga(action) {
     try {
-        console.log(action.payload);
+        yield console.log(action.payload);
     }
     catch (error) {
-        console.log('error in addPetSaga', error);  
+        yield console.log('error in addPetSaga', error);  
     }
 }
 

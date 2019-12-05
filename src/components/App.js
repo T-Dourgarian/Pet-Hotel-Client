@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Owner from './Owners/Owners';
 
 // component imports
 import PetForm from './PetForm/PetForm';
+import Owners from './Owners/Owners';
+import PetTable from './PetTable/PetTable'
 
 class App extends Component {
   state = {
@@ -30,14 +31,12 @@ class App extends Component {
           {!this.state.mode &&
             <>
               <PetForm />
-              {/* pet form component here
-          pet table component here */}
+              <PetTable />
             </>
           }
           {this.state.mode &&
             <>
-              {/* owner form component here
-          owner table component here */}
+              <Owners />
             </>
           }
         </div>
