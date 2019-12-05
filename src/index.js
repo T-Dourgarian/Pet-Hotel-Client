@@ -6,10 +6,11 @@ import {createStore, combineReducers,applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
 import createSagaMiddleWare from 'redux-saga';
-import {takeEvery, put} from 'redux-saga/effects';
+import {takeEvery, takeLatest, put} from 'redux-saga/effects';
 
 function* rootSaga() {
     yield takeEvery('GET_PETS',petsSaga);
+    yield takeLatest('ADD_PET', addPetSaga);
     yield takeEvery('DELETE_PET', deletePetSaga);
     yield takeEvery('UPDATE_PET', updatePetSaga);
     yield takeEvery('ADD_OWNER', addOwnerSaga);
@@ -56,6 +57,15 @@ function* addOwnerSaga(action) {
     }
     catch (error) {
         console.log('error adding owner', error);
+    }
+}
+
+function* addPetSaga(action) {
+    try {
+        console.log(action.payload);
+    }
+    catch (error) {
+        console.log('error in addPetSaga', error);  
     }
 }
 
