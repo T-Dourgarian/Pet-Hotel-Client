@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Owner from './Owners/Owners';
 
 // component imports
 import PetForm from './PetForm/PetForm';
