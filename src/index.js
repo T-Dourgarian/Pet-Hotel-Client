@@ -10,11 +10,44 @@ import {takeEvery, put} from 'redux-saga/effects';
 
 function* rootSaga() {
     yield takeEvery('GET_PETS',petsSaga);
+    yield takeEvery('DELETE_PET', deletePetSaga);
+    yield takeEvery('UPDATE_PET', updatePetSaga);
+    yield takeEvery('ADD_OWNER', addOwnerSaga);
 }
 
 function* petsSaga(action) {
     // axios req to get data
     // call 'SET_PET_INFO' reducer
+}
+
+function* deletePetSaga(action) {
+    try {
+        yield axios.delete(`/pets/${action.payload.id}`);
+        yield put({ type: 'GET_PETS' });
+    }
+    catch (error) {
+        console.log('error deleting pet', error);
+    }
+}
+
+function* updatePetSaga(action) {
+    try {
+        yield axios.put(`/pets`, action.payload);
+        yield put({ type: 'GET_PETS' });
+    }
+    catch (error) {
+        console.log('error editing pet', error);
+    }
+}
+
+function* addOwnerSaga(action) {
+    try {
+        yield axios.post('/owners', action.payload);
+        yield put({ type: 'GET_OWNERS' });
+    }
+    catch (error) {
+        console.log('error adding owner', error);
+    }
 }
 
 const sagaMiddleware = createSagaMiddleWare();
