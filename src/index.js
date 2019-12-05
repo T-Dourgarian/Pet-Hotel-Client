@@ -26,8 +26,16 @@ const petsReducer = (state=[],action) => {
     return state;
 }
 
+const ownersReducer = (state=[],action) => {
+    if(action.type === 'SET_OWNERS') {
+        return action.payload;
+    }
+    return state;
+}
+
 const storeInstance = createStore(
     combineReducers({
+        ownersReducer,
         petsReducer
     }),
     applyMiddleware(sagaMiddleware,logger),
