@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Owner from './Owners/Owners';
 
 class App extends Component {
   state = {
@@ -18,6 +19,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Pet Hotel</h1>
         </header>
+        <Owner />
       </div>
     );
   }
