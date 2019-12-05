@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App/App';
+import App from './components/App';
 import axios from 'axios';
 import {createStore, combineReducers,applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
 import createSagaMiddleWare from 'redux-saga';
-import {takeEvery, put} from 'redux0saga/effects';
+import {takeEvery, put} from 'redux-saga/effects';
 
 function* rootSaga() {
-    yield takeEvery('GET_PETS',petsInfoSaga);
+    yield takeEvery('GET_PETS',petsSaga);
 }
 
 function* petsSaga(action) {
