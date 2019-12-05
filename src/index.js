@@ -1,12 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import App from './components/App/App';
+import axios from 'axios';
+import {createStore, combineReducers,applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import logger from 'redux-logger';
+import createSagaMiddleWare from 'redux-saga';
+import {takeEvery, put} from 'redux0saga/effects';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function* rootSaga() {
+    yield takeEvery('GET_PETS',petsInfoSaga);
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function* petsSaga(action) {
+    // axios req to get data
+    // call 'SET_PET_INFO' reducer
+}
+
+const sagaMiddleware = createSagaMiddleWare();
+
+const petsReducer = (state=[],action) => {
+    if(action.type === 'SET_PETS') {
+        return action.payload;
+    }
+    return state;
+}
+
+const storeInstance = createStore(
+    combineReducers({
+        petsReducer
+    }),
+    applyMiddleware(sagaMiddleware,logger),
+)
+
+sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(<Provider store={storeInstance} ><App /></Provider>, document.getElementById('root'));
