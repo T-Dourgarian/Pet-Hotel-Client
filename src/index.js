@@ -18,6 +18,15 @@ function* rootSaga() {
 function* petsSaga(action) {
     // axios req to get data
     // call 'SET_PET_INFO' reducer
+    //communicates with server route to get pets from database
+    console.log('petDetails Saga', action.payload)
+    try {
+        const petResponse = yield axios.get(`/dashboard/${action.payload}`);
+        yield put({ type: 'SET_PET_INFO', payload: petResponse.data});
+        console.log('petsSaga hit with action', petResponse.data);
+    } catch(error){
+        console.log('error fetching pets', error)
+    }
 }
 
 function* deletePetSaga(action) {
