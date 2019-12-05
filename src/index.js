@@ -22,8 +22,8 @@ function* petsSaga(action) {
     //communicates with server route to get pets from database
     console.log('petDetails Saga', action.payload)
     try {
-        const petResponse = yield axios.get(`/dashboard/${action.payload}`);
-        yield put({ type: 'SET_PET_INFO', payload: petResponse.data});
+        const petResponse = yield axios.get(`/api/pets`);
+        yield put({ type: 'SET_PETS', payload: petResponse.data});
         console.log('petsSaga hit with action', petResponse.data);
     } catch(error){
         console.log('error fetching pets', error)

@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 export class PetTable extends Component {
     
+    componentDidMount() {
+        this.props.dispatch({type: 'GET_PETS'});
+    }
+
     render() {
         return (
             <div>
