@@ -25,7 +25,7 @@ function* petsSaga(action) {
     console.log('petDetails Saga', action.payload)
     try {
         const petResponse = yield axios.get(`/api/pets`);
-        yield put({ type: 'SET_PETS', payload: petResponse.data});
+        yield put({ type: 'SET_PETS', payload: petResponse.data.data});
         console.log('petsSaga hit with action', petResponse.data);
     } catch(error){
         console.log('error fetching pets', error)
