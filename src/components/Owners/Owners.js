@@ -60,7 +60,7 @@ export class OwnerForm extends Component {
                                         </td>
                                     </tr>
                                 )}
-                                <tr>
+                                {/* <tr>
                                     <td>
                                         Thomas
                                     </td>
@@ -70,7 +70,7 @@ export class OwnerForm extends Component {
                                     <td>
                                         <button>Delete</button>
                                     </td>
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </thead>
                     </table>
