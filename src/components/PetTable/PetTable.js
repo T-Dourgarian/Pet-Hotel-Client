@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
+import OwnerName from '../OwnerName/OwnerName'
+
 export class PetTable extends Component {
 
     componentDidMount() {
@@ -33,8 +35,9 @@ export class PetTable extends Component {
                         </tr>
                         {this.props.reduxState.petsReducer[0] && this.props.reduxState.petsReducer.map((pet) => (
                             <tr key={pet.id}>
-                                <td>{pet.owner}</td>
-                                <td>{pet.pet}</td>
+                                {/* <td>{pet.owner_id}</td> */}
+                                <OwnerName id={pet.owner_id}/>
+                                <td>{pet.name}</td>
                                 <td>{pet.breed}</td>
                                 <td>{pet.color}</td>
                                 <td>{pet.check}</td>

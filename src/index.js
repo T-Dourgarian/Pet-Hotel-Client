@@ -66,7 +66,8 @@ function* addOwnerSaga(action) {
 function* getOwnersSaga(action) {
     try {
         const owners = yield axios.get('/api/owners');
-        yield put({ type: 'SET_OWNERS', payload: owners.data});
+        yield console.log('owners saga', owners);
+        yield put({ type: 'SET_OWNERS', payload: owners.data.data});
     }
     catch (error) {
         console.log('error getting owner', error);
@@ -85,7 +86,8 @@ function* deleteOwnerSaga(action) {
 
 function* addPetSaga(action) {
     try {
-        yield console.log(action.payload);
+        yield axios.post('/api/pets', action.payload)
+        yield put({ type: 'GET_PETS' });
     }
     catch (error) {
         yield console.log('error in addPetSaga', error);  

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
+import Count from '../Count/Count'
+
 export class OwnerForm extends Component {
     state = {
         name: '',
@@ -47,14 +49,12 @@ export class OwnerForm extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.props.reduxState.ownersReducer.data && this.props.reduxState.ownersReducer.data.map((owner, i) => 
+                                {this.props.reduxState.ownersReducer && this.props.reduxState.ownersReducer.map((owner, i) => 
                                     <tr key={i}>
                                         <td>
                                             {owner.name}
                                         </td>
-                                        <td>
-                                            0
-                                        </td>
+                                        <Count id={owner.id}/>
                                         <td>
                                             <button onClick={() => this.handleDelete(owner.id)}>delete</button>
                                         </td>
