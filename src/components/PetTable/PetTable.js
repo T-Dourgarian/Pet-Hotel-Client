@@ -2,11 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import OwnerName from '../OwnerName/OwnerName'
+import axios from 'axios';
 
 export class PetTable extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: 'GET_PETS' });
+    }
+
+    handleUpdate = (id) => {
+        axios.put(`/api/pets/${id}`)
+            .then( () => {
+                this.props.dispatch({ type: 'GET_PETS' });
+            })
     }
 
     render() {
@@ -40,14 +48,15 @@ export class PetTable extends Component {
                                 <td>{pet.name}</td>
                                 <td>{pet.breed}</td>
                                 <td>{pet.color}</td>
-                                <td>{pet.check}</td>
-                                <td><button>Delete</button> || <button>Check In </button></td>
+                                {pet.checked_in === null && <td>No</td>}
+                                {pet.checked_in != null && <td>{new Date(pet.updated_at).getDate()}-{new Date(pet.updated_at).getMonth()}-{new Date(pet.updated_at).getFullYear()}</td>}
+                                <td><button>Delete</button> || <button onClick={() => this.handleUpdate(pet.id)}>Check In </button></td>
                             </tr>
                         )
                         )}
                     </tbody>
                 </table>
-                {/* <pre>{JSON.stringify(this.props.reduxState.petsReducer[0], null, 2)}</pre> */}
+                <pre>{JSON.stringify(this.props.reduxState.petsReducer, null, 2)}</pre>
             </div>
         )
     }
