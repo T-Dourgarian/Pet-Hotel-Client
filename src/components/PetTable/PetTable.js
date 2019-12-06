@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 export class PetTable extends Component {
-    
+
     componentDidMount() {
-        this.props.dispatch({type: 'GET_PETS'});
+        this.props.dispatch({ type: 'GET_PETS' });
     }
 
     render() {
@@ -31,7 +31,7 @@ export class PetTable extends Component {
                             <td>No</td>
                             <td><button>Delete</button> || <button>Check In </button></td>
                         </tr>
-                        {/* {this.props.petsReducer.map((pet) => (
+                        {this.props.reduxState.petsReducer[0] && this.props.reduxState.petsReducer.map((pet) => (
                             <tr key={pet.id}>
                                 <td>{pet.owner}</td>
                                 <td>{pet.pet}</td>
@@ -41,9 +41,10 @@ export class PetTable extends Component {
                                 <td><button>Delete</button> || <button>Check In </button></td>
                             </tr>
                         )
-  )} */}
+                        )}
                     </tbody>
                 </table>
+                {/* <pre>{JSON.stringify(this.props.reduxState.petsReducer[0], null, 2)}</pre> */}
             </div>
         )
     }
