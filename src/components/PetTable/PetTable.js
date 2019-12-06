@@ -50,13 +50,13 @@ export class PetTable extends Component {
                                 <td>{pet.color}</td>
                                 {pet.checked_in === null && <td>No</td>}
                                 {pet.checked_in != null && <td>{new Date(pet.updated_at).getDate()}-{new Date(pet.updated_at).getMonth()}-{new Date(pet.updated_at).getFullYear()}</td>}
-                                <td><button>Delete</button> || <button onClick={() => this.handleUpdate(pet.id)}>Check In </button></td>
+                                <td><button onClick={() => {this.props.dispatch({type: 'DELETE_PET', payload: pet.id})}}>Delete</button> || <button onClick={() => this.handleUpdate(pet.id)}>Check In </button></td>
                             </tr>
                         )
                         )}
                     </tbody>
                 </table>
-                <pre>{JSON.stringify(this.props.reduxState.petsReducer, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(this.props.reduxState.petsReducer, null, 2)}</pre> */}
             </div>
         )
     }

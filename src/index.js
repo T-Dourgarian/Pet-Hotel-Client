@@ -34,7 +34,7 @@ function* petsSaga(action) {
 
 function* deletePetSaga(action) {
     try {
-        yield axios.delete(`/pets/${action.payload.id}`);
+        yield axios.delete(`/api/pets/${action.payload}`);
         yield put({ type: 'GET_PETS' });
     }
     catch (error) {
