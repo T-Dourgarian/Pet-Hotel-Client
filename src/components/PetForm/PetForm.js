@@ -53,7 +53,7 @@ export class PetForm extends Component {
                     <input value={this.state.pet.name} onChange={(event) => this.handleChange('name', event)} placeholder="Pet Name" />
                     <input value={this.state.pet.color} onChange={(event) => this.handleChange('color', event)} placeholder="Pet Color" />
                     <input value={this.state.pet.breed} onChange={(event) => this.handleChange('breed', event)} placeholder="Pet Breed" />
-                    <select onClick={(event) => this.handleChange('owner_id', event)}>
+                    <select onChange={(event) => this.handleChange('owner_id', event)}>
                         {/* map through owner names from DB to populate <option></option>'s */}
                         {this.props.ownersReducer.map((owner) =>
                             <option value={owner.id}>{owner.name}</option>
