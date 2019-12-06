@@ -5,6 +5,15 @@ export class OwnerForm extends Component {
     state = {
         name: '',
     }
+
+    componentDidMount() {
+        this.props.dispatch({ type: 'GET_OWNERS' })
+    }
+
+    handleDelete = (id) => {
+        this.props.dispatch({type: 'DELETE_OWNER', payload: id})
+    }
+
     render() {
         return (
             <div>
@@ -38,18 +47,19 @@ export class OwnerForm extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* this.props.owners.map((owner,i) => 
+                                {this.props.reduxState.ownersReducer.data && this.props.reduxState.ownersReducer.data.map((owner, i) => 
                                     <tr key={i}>
                                         <td>
-                                            owner.name
+                                            {owner.name}
                                         </td>
                                         <td>
-                                            owner.numberOfPets
+                                            0
                                         </td>
                                         <td>
-                                            <button>delete</button>
+                                            <button onClick={() => this.handleDelete(owner.id)}>delete</button>
                                         </td>
-                                    </tr>) */}
+                                    </tr>
+                                )}
                                 <tr>
                                     <td>
                                         Thomas
@@ -65,6 +75,7 @@ export class OwnerForm extends Component {
                         </thead>
                     </table>
                 </div>
+                {JSON.stringify(this.props.reduxState.ownersReducer.data, null, 2)}
             </div>
         )
     }

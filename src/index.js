@@ -14,6 +14,8 @@ function* rootSaga() {
     yield takeEvery('DELETE_PET', deletePetSaga);
     yield takeEvery('UPDATE_PET', updatePetSaga);
     yield takeEvery('ADD_OWNER', addOwnerSaga);
+    yield takeEvery('GET_OWNERS', getOwnersSaga);
+    yield takeEvery('DELETE_OWNER', deleteOwnerSaga);
 }
 
 function* petsSaga(action) {
@@ -52,11 +54,32 @@ function* updatePetSaga(action) {
 
 function* addOwnerSaga(action) {
     try {
-        yield axios.post('/owners', action.payload);
+        yield console.log(action.payload);
+        yield axios.post(`/api/owners/`, {name: action.payload});
         yield put({ type: 'GET_OWNERS' });
     }
     catch (error) {
         console.log('error adding owner', error);
+    }
+}
+
+function* getOwnersSaga(action) {
+    try {
+        const owners = yield axios.get('/api/owners');
+        yield put({ type: 'SET_OWNERS', payload: owners.data});
+    }
+    catch (error) {
+        console.log('error getting owner', error);
+    }
+}
+
+function* deleteOwnerSaga(action) {
+    try {
+        yield axios.delete(`/api/owners/${action.payload}`);
+        yield put({ type: 'GET_OWNERS'});
+    }
+    catch (error) {
+        console.log('error getting owner', error);
     }
 }
 
