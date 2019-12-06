@@ -35,6 +35,14 @@ export class PetForm extends Component {
 
     handleClick = () => {
         this.props.dispatch({ type: 'ADD_PET', payload: this.state.pet })
+        this.setState({
+            pet: {
+                name: '',
+                color: '',
+                breed: '',
+                owner_id: '',
+            }
+        })
     }
 
     render() {
@@ -42,10 +50,10 @@ export class PetForm extends Component {
             <>
                 <h2>Add Pet</h2>
                 <div className="pet-form-inputs">
-                    <input onChange={(event) => this.handleChange('name', event)} placeholder="Pet Name" />
-                    <input onChange={(event) => this.handleChange('color', event)} placeholder="Pet Color" />
-                    <input onChange={(event) => this.handleChange('breed', event)} placeholder="Pet Breed" />
-                    <select onClick={(event) => this.handleChange('owner_id', event)}>
+                    <input value={this.state.pet.name} onChange={(event) => this.handleChange('name', event)} placeholder="Pet Name" />
+                    <input value={this.state.pet.color} onChange={(event) => this.handleChange('color', event)} placeholder="Pet Color" />
+                    <input value={this.state.pet.breed} onChange={(event) => this.handleChange('breed', event)} placeholder="Pet Breed" />
+                    <select onChange={(event) => this.handleChange('owner_id', event)}>
                         {/* map through owner names from DB to populate <option></option>'s */}
                         {this.props.ownersReducer.map((owner) =>
                             <option value={owner.id}>{owner.name}</option>

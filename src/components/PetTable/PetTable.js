@@ -33,14 +33,14 @@ export class PetTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {/* <tr>
                             <td>Chris</td>
                             <td>Charlie</td>
                             <td>Shih-tzu</td>
                             <td>Black</td>
                             <td>No</td>
                             <td><button>Delete</button> || <button>Check In </button></td>
-                        </tr>
+                        </tr> */}
                         {this.props.reduxState.petsReducer[0] && this.props.reduxState.petsReducer.map((pet) => (
                             <tr key={pet.id}>
                                 {/* <td>{pet.owner_id}</td> */}
